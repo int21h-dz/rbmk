@@ -1,0 +1,89 @@
+{
+  "_comment": "Настройки проекта. Комментарии хранятся в полях с префиксом _comment_.",
+  "database": {
+    "_comment_dsn": "DSN Firebird в формате HOST:PATH_TO_FDB",
+    "dsn": "10.15.2.58:F:\\NFXOPER.FDB",
+    "_comment_user": "Пользователь БД",
+    "user": "SYSDBA",
+    "_comment_password": "Пароль БД",
+    "password": "masterkey"
+  },
+  "tp_database": {
+    "_comment_dsn": "Вторая БД Firebird для ТП-данных",
+    "dsn": "10.15.2.58:D:\\SA2024.FDB",
+    "_comment_user": "Пользователь БД",
+    "user": "SYSDBA",
+    "_comment_password": "Пароль БД",
+    "password": "masterkey"
+  },
+  "model": {
+    "_comment_input_dim": "Размер входного вектора сети (используется в synthetic_data)",
+    "input_dim": 3996,
+    "_comment_output_dim": "Размер выходного вектора сети (используется в synthetic_data)",
+    "output_dim": 228,
+    "_comment_hidden_dims": "Размеры скрытых слоев MLP",
+    "hidden_dims": [
+      1024,
+      512,
+      256
+    ],
+    "_comment_dropout": "Dropout для скрытых слоев",
+    "dropout": 0.3,
+    "_comment_use_genetic_search": "Включить генетический подбор топологии hidden_dims",
+    "use_genetic_search": true
+  },
+  "genetic_search": {
+    "_comment_population_size": "Размер популяции",
+    "population_size": 5,
+    "_comment_generations": "Количество поколений",
+    "generations": 15,
+    "_comment_survivors": "Сколько лучших особей оставлять в поколении",
+    "survivors": 3,
+    "_comment_mutation_rate": "Вероятность мутации (0..1)",
+    "mutation_rate": 0.35,
+    "_comment_min_layers": "Минимум скрытых слоев",
+    "min_layers": 1,
+    "_comment_max_layers": "Максимум скрытых слоев",
+    "max_layers": 3,
+    "_comment_min_units": "Минимум нейронов в слое",
+    "min_units": 64,
+    "_comment_max_units": "Максимум нейронов в слое",
+    "max_units": 2048,
+    "_comment_units_step": "Шаг по количеству нейронов",
+    "units_step": 64,
+    "_comment_eval_epochs": "Эпох для быстрой оценки одной топологии",
+    "eval_epochs": 5
+  },
+  "training": {
+    "_comment_learning_rate": "Скорость обучения оптимизатора Adam",
+    "learning_rate": 0.001,
+    "_comment_num_epochs": "Максимальное количество эпох обучения",
+    "num_epochs": 1000,
+    "_comment_batch_size": "Размер батча",
+    "batch_size": 12,
+    "_comment_train_split": "Доля обучающей выборки (0..1)",
+    "train_split": 0.8,
+    "_comment_use_early_stopping": "Остановить обучение при отсутствии улучшения",
+    "use_early_stopping": true,
+    "_comment_early_stopping_patience": "Сколько эпох ждать улучшения",
+    "early_stopping_patience": 12,
+    "_comment_early_stopping_min_delta": "Минимальное улучшение val_loss, чтобы считать прогресс",
+    "early_stopping_min_delta": 0.0001,
+    "_comment_checkpoint_path": "Путь к файлу чекпоинта модели",
+    "checkpoint_path": "mlp_checkpoint.pt",
+    "_comment_resume_from_checkpoint": "Дообучать из checkpoint_path, если файл существует",
+    "resume_from_checkpoint": false
+  },
+  "synthetic_data": {
+    "_comment_enabled_on_empty_db": "Генерировать тестовые данные при пустом результате БД",
+    "enabled_on_empty_db": true,
+    "_comment_samples": "Количество синтетических примеров",
+    "samples": 2560,
+    "_comment_dims_source": "Размерности synthetic данных берутся из model.input_dim/model.output_dim",
+    "dims_source": "model",
+    "_comment_noise_std": "Стандартное отклонение шума в целевой переменной",
+    "noise_std": 0.05,
+    "_comment_seed": "Seed для воспроизводимости генерации",
+    "seed": 42
+  }
+}
